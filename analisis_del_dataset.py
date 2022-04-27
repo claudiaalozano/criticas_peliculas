@@ -8,8 +8,10 @@ def analisis_datos_peliculas(nombre_archivo):
             linea= linea.rstrip()
             separate= ","
             lista = linea.split(",")
-            nota=int(lista[0])
-            numero_votantes= int (lista[1])
+            nota=lista[0]
+            int_nota = nota (map(int,lista))
+            numero_votantes= lista[1]
+            int_numero_votantes = numero_votantes (map(int,lista))
             promedio= nota/numero_votantes
             print("La nota es: ", nota)
             print("El numero de votantes es: ", numero_votantes)
