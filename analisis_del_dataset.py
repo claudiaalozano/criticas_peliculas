@@ -2,23 +2,10 @@ import csv
 
 
 
-#nombre_archivo= "critica_pelis.csv"
-#with open('critica_pelis.csv', "r") as archivo:
-#    for linea in archivo:
-      #  linea= linea.rstrip()
-    #    separate= ","
-     #   lista = linea.split(",")
-     #   nota=int(lista[0])
-     #   numero_votantes= int (lista[1])
-        
-
-
-
-#función para analizar datos_peliculas.csv
-nombre_archivo = "datos_peliculas.csv"
+nombre_archivo = "datos_pelis.csv"
 def analisis_datos_peliculas(nombre_archivo):
-    with open("datos_peliculas.csv", "r") as archivo:
-        for linea in archivo:
+    with open(nombre_archivo, "r") as File:
+        for linea in File:
             linea= linea.rstrip()
             separate= ","
             lista = linea.split(",")
@@ -30,8 +17,8 @@ def analisis_datos_peliculas(nombre_archivo):
             print("El promedio es: ", promedio)
             print("\n")
     #obtenemos el 68% de los votos
-    with open("datos_peliculas.csv", "r") as archivo:
-        for linea in archivo:
+    with open(nombre_archivo, "r") as File:
+        for linea in File:
             linea= linea.rstrip()
             separate= ","
             lista = linea.split(",")
@@ -44,8 +31,8 @@ def analisis_datos_peliculas(nombre_archivo):
                 print("La pelicula es mala")
             print("\n")
     #obtenemos el 95% de los votos
-    with open("datos_peliculas.csv", "r") as archivo:
-        for linea in archivo:
+    with open(nombre_archivo, "r") as File:
+        for linea in File:
             linea= linea.rstrip()
             separate= ","
             lista = linea.split(",")
@@ -58,8 +45,8 @@ def analisis_datos_peliculas(nombre_archivo):
                 print("La pelicula es mala")
             print("\n")
     #obtenemos el 97% de los votos
-    with open("datos_peliculas.csv", "r") as archivo:
-        for linea in archivo:
+    with open(nombre_archivo, "r") as File:
+        for linea in File:
             linea= linea.rstrip()
             separate= ","
             lista = linea.split(",")
@@ -71,3 +58,6 @@ def analisis_datos_peliculas(nombre_archivo):
             else:
                 print("La pelicula es mala")
             print("\n")
+
+
+print(analisis_datos_peliculas(nombre_archivo))
