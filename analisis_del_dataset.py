@@ -15,6 +15,7 @@ import csv
 
 
 #función para analizar datos_peliculas.csv
+nombre_archivo = "datos_peliculas.csv"
 def analisis_datos_peliculas(nombre_archivo):
     with open("datos_peliculas.csv", "r") as archivo:
         for linea in archivo:
