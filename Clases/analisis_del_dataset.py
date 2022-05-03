@@ -1,67 +1,45 @@
 import csv
- 
-nombre_archivo = "datos_pelis.csv"
-def analisis_datos_peliculas(nombre_archivo):
-    with open(nombre_archivo, "r") as File:
-        next(File, None)
-        for linea in File:
-            linea= linea.rstrip()
-            separate= ","
-            lista = linea.split(",")
-            nota=lista[0]
-            int_nota = nota (map(int,lista))
-            numero_votantes= lista[1]
-            int_numero_votantes = numero_votantes (map(int,lista))
-            promedio= nota/numero_votantes
-            print("La nota es: ", nota)
-            print("El numero de votantes es: ", numero_votantes)
-            print("El promedio es: ", promedio)
-            print("\n")
-    pregunta=input(int("¿Desea analizar el 68% (1), el 95% (2) o el 97%(3) de los votos? "))
-    if pregunta == 1:
-        with open(nombre_archivo, "r") as File:
-            for linea in File:
-                linea= linea.rstrip()
-                separate= ","
-                lista = linea.split(",")
-                nota=int(lista[0])
-                numero_votantes= int (lista[1])
-                promedio= nota/numero_votantes
-                if promedio>=6.8:
-                    print("La pelicula es buena")
-                else:
-                    print("La pelicula es mala")
-                print("\n")
-    elif pregunta == 2:
-        with open(nombre_archivo, "r") as File:
-            for linea in File:
-                linea= linea.rstrip()
-                separate= ","
-                lista = linea.split(",")
-                nota=int(lista[0])
-                numero_votantes= int (lista[1])
-                promedio= nota/numero_votantes
-                if promedio>=9.5:
-                    print("La pelicula es buena")
-                else:
-                    print("La pelicula es mala")
-                print("\n")
-    elif pregunta == 3:   
-        with open(nombre_archivo, "r") as File:
-            for linea in File:
-                linea= linea.rstrip()
-                separate= ","
-                lista = linea.split(",")
-                nota=int(lista[0])
-                numero_votantes= int (lista[1])
-                promedio= nota/numero_votantes
-                if promedio>=9.7:
-                    print("La pelicula es buena")
-                else:
-                    print("La pelicula es mala")
-                print("\n")
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+peliculas = pd.read_csv("datos_pelis.csv" , sep= "\t")
+peliculas = peliculas.dropna()
 
 
-analisis_datos_peliculas(nombre_archivo)
+def media_notas_pandas():
+    media_notas = peliculas.groupby("nota")["nota"].mean()
+    print(media_notas)
 
+
+def desviacion_estandar_pandas():
+    desviacion_estandar = peliculas.groupby("nota")["nota"].std()
+    print(desviacion_estandar)
+
+
+def media_desviacion_tipica_pandas():
+    media_notas = peliculas.groupby("nota")["nota"].mean()
+    desviacion_estandar = peliculas.groupby("nota")["nota"].std()
+    print(media_notas)
+    print(desviacion_estandar)
+    print("\n")
+    print("El 68% de los votos es: ", media_notas.loc[6.8])
+    print("El 95% de los votos es: ", media_notas.loc[9.5])
+    print("El 97% de los votos es: ", media_notas.loc[9.7])
+    print("\n")
+
+
+def diagrama_barras_pandas():
+    notas = peliculas.groupby("nota")["nota"].count()
+    notas.plot(kind="bar")
+    plt.savefig("diagrama_barras.png")
+    plt.show()
+
+
+def diagrama_dispersion_pandas():
+    notas = peliculas.groupby("nota")["nota"].count()
+    notas.plot(kind="box")
+    plt.savefig("diagrama_dispersión.png")
+    plt.show()
+    
 
