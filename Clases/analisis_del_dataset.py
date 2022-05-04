@@ -37,9 +37,9 @@ def diagrama_barras_pandas():
 
 
 def diagrama_dispersion_pandas():
-    notas = peliculas.groupby("nota")["nota"].count()
-    notas.plot(kind="box")
-    plt.savefig("diagrama_dispersión.png")
-    plt.show()
+  fig, ax = plt.subplots()
+  notas = peliculas.groupby("nota")["nota"].count()
+  notas.plot(kind="box")
+  plt.savefig("diagrama_dispersión.png")
+  plt.show()
     
-
